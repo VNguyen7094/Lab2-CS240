@@ -1,0 +1,39 @@
+public class Main {
+    public static void main(String[] args) {
+        WarGame game = new WarGame();
+        game.playGame();
+    }
+}
+public void playGame() {
+    while (!player1Deck.isEmpty() && !player2Deck.isEmpty()) {
+        playRound();
+        System.out.println("Player 1 cards: " + player1Deck.size() + " | Player 2 cards: " + player2Deck.size());
+        System.out.println();
+    }
+
+    if (player1Deck.size() > player2Deck.size()) {
+        System.out.println("Player 1 wins the game!");
+    } else if (player1Deck.size() < player2Deck.size()) {
+        System.out.println("Player 2 wins the game!");
+    } else {
+        System.out.println("It's a tie!");
+    }
+}
+class Card {
+    String rank;
+
+    public Card(String rank) {
+        this.rank = rank;
+    }
+
+    // Compare two cards based on their rank
+    public int compareTo(Card otherCard) {
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        int thisRank = -1, otherRank = -1;
+        for (int i = 0; i < ranks.length; i++) {
+            if (this.rank.equals(ranks[i])) thisRank = i;
+            if (otherCard.rank.equals(ranks[i])) otherRank = i;
+        }
+        return Integer.compare(thisRank, otherRank);
+    }
+}
